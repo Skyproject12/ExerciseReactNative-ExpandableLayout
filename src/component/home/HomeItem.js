@@ -19,20 +19,14 @@ class HomeItem extends Component {
     }));
   };
 
-  renderDetails = (textHasil) => (
+  renderDetails = () => (
     <View>
-      <Text style={styles.description}>{textHasil}</Text>
+      <Text style={styles.description}>{this.props.item.description}</Text>
     </View>
   );
 
   render() {
     const {isSelected} = this.state;
-    let textHasil = '';
-    if (isSelected === false) {
-      textHasil = 'uncheck';
-    } else {
-      textHasil = 'check';
-    }
     return (
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={this.onPress}>
@@ -41,7 +35,7 @@ class HomeItem extends Component {
             <Image source={image.expand} style={styles.Image} />
           </View>
         </TouchableWithoutFeedback>
-        {this.renderDetails(textHasil)}
+        {isSelected && this.renderDetails()}
       </View>
     );
   }
